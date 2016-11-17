@@ -36,7 +36,7 @@ endpoints:
                 - name: after
                   description: Number of base pairs after the gene
                   type: integer
-                  default: 100
+                  default: 1000
     /access/alignmentByRegion.cgi:
         get:
             description: Returns alignment given a region of chromosome
@@ -60,7 +60,7 @@ endpoints:
                   description: The strand to show
                   type: string
                   default: +
-    /access/check_alias.cgi:
+    /access/check_alias.pl:
         get:
             description: Check whether gene or alias is valid
             parameters:
@@ -69,7 +69,7 @@ endpoints:
                   type: string
                   required: true
                   default: ABI3
-    /access/get_alias.cgi:
+    /access/get_alias.pl:
         get:
             description: Retune gene ID given an alias
             parameters:
