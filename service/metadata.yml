@@ -1,0 +1,91 @@
+---
+
+name: geneslider
+description: Returns data for Araport Gene Slider
+type: passthrough
+url: http://bar.utoronto.ca/geneslider/cgi-bin
+version: 0.0.1
+icon: BAR.png
+tags:
+    - 'BAR'
+    - 'Arabidopsis'
+    - 'Gene Slider'
+authors:
+    - name: Asher Pasha
+      email: asher.pasha@utoronto.ca
+      sponsor_organization: University of Toronto
+      sponsor_uri: http://www.utoronto.ca/
+
+whitelist:
+    - bar.utoronto.ca
+
+endpoints:
+    /access/alignmentByAgi.cgi:
+        get:
+            description: Returns alignment given an AGI
+            parameters:
+                - name: agi
+                  description: The AGI ID
+                  type: string
+                  required: true
+                  default: At1g01010
+                - name: before
+                  description: Number of base pairs before the gene
+                  type: integer
+                  default: 1000
+                - name: after
+                  description: Number of base pairs after the gene
+                  type: integer
+                  default: 100
+    /access/alignmentByRegion.cgi:
+        get:
+            description: Returns alignment given a region of chromosome
+            parameters:
+                - name: chr
+                  description: The chromosome ID
+                  type: string
+                  required: true
+                  default: 1
+                - name: start
+                  description: Base pair to start at
+                  type: integer
+                  default: 3120
+                  required: true
+                - name: end
+                  description: Base pair to end at
+                  type: integer
+                  required: true
+                  default: 5000
+                - name: strand
+                  description: The strand to show
+                  type: string
+                  default: +
+    /access/check_alias.cgi:
+        get:
+            description: Check whether gene or alias is valid
+            parameters:
+                - name: gene
+                  description: A gene or an alias
+                  type: string
+                  required: true
+                  default: ABI3
+    /access/get_alias.cgi:
+        get:
+            description: Retune gene ID given an alias
+            parameters:
+                - name: term
+                  description: An alias
+                  type: string
+                  required: true
+                  default: ABI3
+
+sources:
+    - title: Gene Slider Web Services
+      description: A adaptor to get data from Gene Slider web services.
+      language: en-ca
+      sponsor_organization_name: University of Toronto
+      sponsor_uri: http://www.utoronto.ca/
+      provider_name: Nicholas Provart
+      provider_email: nicholas.provart@utoronto.ca
+      uri: http://bar.utoronto.ca/geneslider/
+
